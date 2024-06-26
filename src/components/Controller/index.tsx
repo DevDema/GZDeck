@@ -15,9 +15,6 @@ export const Controller = (props: ControllerProps): ReactElement => {
       }).map(g => g.index));
   });
 
-  window.addEventListener("Gamepaf")
-
-
   useEffect(() => {
     console.log(gamepadList);
   }, [gamepadList])
