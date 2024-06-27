@@ -4,6 +4,7 @@ import { Button, Card, Container } from 'react-bootstrap';
 import Col from 'react-bootstrap/Col';
 import { useTranslation } from 'react-i18next';
 import IwadModal from '../IwadModal';
+import ChangePathModal from '../changePathModal';
 import Spinner from 'react-bootstrap/Spinner';
 import { useAppState } from '../../Providers/AppState/AppState';
 import { ModFile } from '../../types';
@@ -16,7 +17,8 @@ export const LaunchBar = (props: {
   getFocusableElements: (b: boolean, elem: string) => void;
 }): ReactElement => {
   const [launchDisabled, setLaunchDisabled] = useState<boolean>(false);
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [showIwadModal, setShowIwadModal] = useState<boolean>(false);
+  const [showChangePathsModal, setShowChangePathsModal] = useState<boolean>(false);
   const {
     iwads,
     setSelectedIwad,
@@ -57,18 +59,22 @@ export const LaunchBar = (props: {
 
   useEffect(() => {
     if (!appState.inputDisabled) {
-      getFocusableElements(showModal, 'iwad');
+      getFocusableElements(showIwadModal, 'iwad');
     }
-  }, [showModal]);
+  }, [showIwadModal]);
 
   return (
     <Container style={{ position: 'fixed', bottom: '20px' }}>
       <IwadModal
-        showModal={showModal}
-        setShowModal={setShowModal}
+        showModal={showIwadModal}
+        setShowModal={setShowIwadModal}
         setValue={setSelectedIwad}
         iwads={iwads}
         selectedIwad={selectedIwad}
+      />
+      <ChangePathModal
+        showModal={showChangePathsModal}
+        setShowModal={setShowChangePathsModal}
       />
       <Row style={{ height: '10rem' }}>
         <Col>
@@ -77,14 +83,24 @@ export const LaunchBar = (props: {
               {t('SELECTED_IWAD')}: {selectedIwad || t('NONE')}
             </Card.Header>
             <Card.Body>
+              <Row>
               <Button
-                data-inputcategory="left"
-                className="custom-button"
-                style={{ width: '100%', height: '100%' }}
-                onClick={() => setShowModal(true)}
-              >
-                {t('SET_IWAD')}
-              </Button>
+                  data-inputcategory="left"
+                  className="custom-button"
+                  style={{ width: '50%', height: '100%' }}
+                  onClick={() => setShowChangePathsModal(true)}
+                >
+                  {t('CHANGE_PATHS')}
+                </Button>
+                <Button
+                  data-inputcategory="left"
+                  className="custom-button"
+                  style={{ width: '50%', height: '100%' }}
+                  onClick={() => setShowIwadModal(true)}
+                >
+                  {t('SET_IWAD')}
+                </Button>
+              </Row>
             </Card.Body>
           </Card>
         </Col>

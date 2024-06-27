@@ -6,6 +6,13 @@
   "LAUNCH": "Launch",
   "SELECTED_IWAD": "Selected IWAD",
   "SET_IWAD": "Set IWAD",
+  "CHANGE_PATHS": "Change paths",
+  "PATH_CONFIGURATION": "Path configuration",
+  "IWADS_PATH": "IWADs path",
+  "PWADS_PATH": "PWADs path",
+  "PWADS_PATH_PLACEHOLDER": "/Path/to/PWADS",
+  "IWADS_PATH_PLACEHOLDER": "/Path/to/IWADS",
+
   "NONE": "None",
   "AVAILABLE_IWADS": "Available IWADS",
   "OK": "Ok"
